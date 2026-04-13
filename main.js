@@ -2,6 +2,15 @@ let humanScore = 0;
 let computerScore = 0;
 
 
+let scoreBoard = document.querySelector("div");
+let rockbtn = document.querySelector("#rock");
+let paperbtn = document.querySelector("#paper");
+let scissorsbtn = document.querySelector("#scissors");
+
+
+
+
+
 function getComputerChoice(){
     let symbol = Math.floor(Math.random() * 3);
     if(symbol === 0){
@@ -15,24 +24,7 @@ function getComputerChoice(){
     }
 }
 
-function getHumanChoice(){
-let humanChoice = prompt("type rock, paper or scissors");
 
-    if(humanChoice.toLowerCase() === "rock"){
-        return "rock";
-    }
-    else if(humanChoice.toLowerCase() === "paper"){
-        return "paper";
-    }
-    else if(humanChoice.toLowerCase() === "scissors"){
-        return "scissors";
-    }
-    else{
-        return "type a valid choice";
-    }
-
-
-}
 
 
 
@@ -44,67 +36,76 @@ function playRound(humanChoice, computerChoice){
 
 if(humanChoice === "rock" && computerChoice === "scissors"){
     humanScore++;
-    return "You win! Rock beats Scissors\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
+scoreBoard.textContent = "You win! Rock beats Scissors\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
     
 }
 
 else if(humanChoice === "rock" && computerChoice === "paper"){
     computerScore++;
-return "You lose! Paper beats Rock\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
+scoreBoard.textContent = "You lose! Paper beats Rock\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
 }
 
 
 
 else if(humanChoice === "paper" && computerChoice === "rock"){
     humanScore++;
-return "You win! Paper beats Rock\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
+scoreBoard.textContent = "You win! Paper beats Rock\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
 }
 
 else if(humanChoice === "paper" && computerChoice === "scissors"){
     computerScore++;
-return "You lose! Scissors beats Paper\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
+scoreBoard.textContent = "You lose! Scissors beats Paper\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
 }
 
 
 
 else if(humanChoice === "scissors" && computerChoice === "paper"){
     humanScore++;
-return "You win! Scissors beats Paper\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
+scoreBoard.textContent = "You win! Scissors beats Paper\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
 }
 
 else if(humanChoice === "scissors" && computerChoice === "rock"){
     computerScore++;
-return "You lose! Rock beats Scissors\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
+scoreBoard.textContent = "You lose! Rock beats Scissors\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
 }
 
 else if(humanChoice === computerChoice ){
-return "Its a tie.\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
-}
-
-else {
-    return "type a valid choice";
+scoreBoard.textContent =  "Its a tie.\nYour score is " + humanScore + " and the Computer's score is " + computerScore ;
 }
 
 
-
 }
-
-
-
 
 
 function playGame(){
+    if(humanScore===5){
+        scoreBoard.textContent="YOU HAVE WON THE GAME! YOUR SCORE IS: " + humanScore + ". COMPUTER'S SCORE IS: " + computerScore + ". ";
+        humanScore = 0;
+        computerScore = 0;
+    } else if(computerScore===5){
+        scoreBoard.textContent="YOU HAVE LOST THE GAME! YOUR SCORE IS: " + humanScore + ". COMPUTER'S SCORE IS: " + computerScore + ". ";
+        humanScore = 0;
+        computerScore = 0;
+    }
 
-console.log(playRound(getHumanChoice() , getComputerChoice()));
-console.log(playRound(getHumanChoice() , getComputerChoice()));
-console.log(playRound(getHumanChoice() , getComputerChoice()));
-console.log(playRound(getHumanChoice() , getComputerChoice()));
-console.log(playRound(getHumanChoice() , getComputerChoice()));
 
-
-
-    
 }
 
 
-playGame();
+rockbtn.addEventListener("click",() => {
+        
+        playRound(rockbtn.id, getComputerChoice())
+        playGame();
+    })
+
+    paperbtn.addEventListener("click",() => {
+        
+        playRound(paperbtn.id, getComputerChoice())
+        playGame();
+    })
+
+    scissorsbtn.addEventListener("click",() => {
+        
+        playRound(scissorsbtn.id, getComputerChoice())
+        playGame();
+    })
