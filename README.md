@@ -1,1 +1,2 @@
 # rock-paper-scissors-ui
+A simple Rock, Paper, Scissors game built with JavaScript featuring an interactive user interface. Play against the computer, get instant results, and enjoy a clean & responsive design
